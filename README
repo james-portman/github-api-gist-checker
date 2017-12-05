@@ -1,5 +1,9 @@
-To use either install python requests or following steps using python virtualenv:
+This is a small python app which uses the Github API to check when a user has created a new Gist.
 
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
+To use it, either install python requests or use the following steps to create a python virtualenv:
+
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+
+$ python checkgists.py
