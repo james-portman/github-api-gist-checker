@@ -1,11 +1,3 @@
-"""
-TODO:
-
-Recommended to add header:
-  Accept: application/vnd.github.v3+json
-
-"""
-
 import json
 import requests
 
@@ -13,17 +5,21 @@ import requests
 try:
     with open('gists.json') as input_file:
         previous_gists = json.load(input_file)
-except:
-    print "Failed to load previous gists in"
+except Exception as e:
+    print "Failed to load previous gists in:", e
     previous_gists = []
+
 # make a list of the previously seen gist IDs
 previous_gist_ids = {}
 for gist in previous_gists:
     previous_gist_ids[gist['id']] = True
 
 # fetch all gists
-response = requests.get("https://api.github.com/users/james-portman/gists")
+url = "https://api.github.com/users/james-portman/gists"
+headers = {"Accept": "application/vnd.github.v3+json"}
+response = requests.get(url, headers=headers)
 gists = response.json()
+
 # check for new gists we haven't seen
 for gist in gists:
     if gist['id'] not in previous_gist_ids:
